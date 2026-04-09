@@ -1,0 +1,10 @@
+.firebase/
+functions/node_modules/
+public/config/app-config.js
+functions/config/runtime-config.js
+*.env
+*.env.*
+*.local
+*.local.js
+serviceAccount*.json
+firebase-adminsdk*.json

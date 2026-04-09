@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telematics Logs</title>
+  <link rel="stylesheet" href="./log-manager.css" />
+</head>
+<body>
+  <div class="log-shell">
+    <header class="log-header">
+      <div>
+        <h1>Telematics Logs</h1>
+        <p>Firestore onSnapshot 기반 실시간 로그 관리 화면</p>
+      </div>
+      <div class="header-badge">Realtime</div>
+    </header>
+
+    <main class="log-main">
+      <aside class="filter-panel">
+        <section class="panel-section">
+          <h2>원시 로그 업로드</h2>
+
+          <label class="upload-label" for="rawLogFile">
+            로그 파일 선택
+            <input id="rawLogFile" type="file" accept=".txt,.log" hidden />
+          </label>
+
+          <div id="uploadStatus" class="query-status">업로드 대기 중</div>
+        </section>
+
+        <section class="panel-section">
+          <h2>검색 조건</h2>
+
+          <label class="field-label" for="startDate">시작 날짜</label>
+          <input id="startDate" type="datetime-local" class="field-input" />
+
+          <label class="field-label" for="endDate">종료 날짜</label>
+          <input id="endDate" type="datetime-local" class="field-input" />
+
+          <label class="field-label" for="logLevel">로그 레벨</label>
+          <select id="logLevel" class="field-input">
+            <option value="ALL">ALL</option>
+            <option value="INFO">INFO</option>
+            <option value="WARNING">WARNING</option>
+            <option value="CRITICAL">CRITICAL</option>
+          </select>
+
+          <label class="field-label" for="keyword">키워드</label>
+          <input
+            id="keyword"
+            type="text"
+            class="field-input"
+            placeholder="message / event / impact 검색"
+          />
+
+          <label class="field-label" for="userId">사용자 ID</label>
+          <input
+            id="userId"
+            type="text"
+            class="field-input"
+            placeholder="예: user_ssafy"
+          />
+
+          <div class="button-row">
+            <button id="applyFilterBtn" class="btn btn-primary" type="button">필터 적용</button>
+            <button id="resetFilterBtn" class="btn btn-secondary" type="button">초기화</button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h2>조회 상태</h2>
+          <div id="queryStatus" class="query-status">대기 중</div>
+        </section>
+
+        <section class="panel-section help-panel">
+          <h2>설명</h2>
+          <p>
+            최신 로그가 상단에 표시됩니다. 날짜 범위, 레벨, 키워드, 사용자 ID를 조합해
+            원하는 데이터만 빠르게 조회할 수 있습니다.
+          </p>
+        </section>
+      </aside>
+
+      <section class="visual-panel">
+        <section class="summary-grid">
+          <article class="summary-card">
+            <span class="summary-label">TOTAL</span>
+            <strong id="totalCount">0</strong>
+          </article>
+          <article class="summary-card info-card">
+            <span class="summary-label">INFO</span>
+            <strong id="infoCount">0</strong>
+          </article>
+          <article class="summary-card warning-card">
+            <span class="summary-label">WARNING</span>
+            <strong id="warningCount">0</strong>
+          </article>
+          <article class="summary-card error-card">
+            <span class="summary-label">CRITICAL</span>
+            <strong id="errorCount">0</strong>
+          </article>
+        </section>
+
+        <section class="list-panel">
+          <div class="list-header">
+            <h2>실시간 로그 목록</h2>
+            <span id="listMeta">0건</span>
+          </div>
+
+          <div id="emptyState" class="empty-state hidden">
+            조건에 맞는 로그가 없습니다.
+          </div>
+
+          <div id="loadingState" class="loading-state">
+            Firestore 연결 중...
+          </div>
+
+          <div id="logList" class="log-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./log-manager.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <div id="accessDeniedMessage" class="access-denied-message" hidden>
+        현재 계정은 AI Chatbot에 접근할 수 없습니다.
+    </div>
+    <div class="chat-wrapper">
+        <div class="chat-box" id="chatBox">
+            <div class="message ai">
+                <div class="bubble">안녕하세요. 주행 데이터를 분석하는 AI 비서입니다. 무엇을 도와드릴까요?</div>
+                <div class="time" id="initTime"></div>
+            </div>
+        </div>
+        
+        <div id="recordingStatus" class="recording-status hidden">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            음성 인식 중...
+        </div>
+
+        <div class="input-area">
+            <button id="micBtn" class="action-btn mic-btn" title="음성 입력">🎤</button>
+            <input type="text" id="chatInput" placeholder="메시지를 입력하세요..." autocomplete="off">
+            <button id="sendBtn" class="action-btn send-btn" title="전송">전송</button>
+        </div>
+    </div>
+    <script type="module" src="chatbot.js"></script>
+</body>
+</html>

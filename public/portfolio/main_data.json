@@ -1,0 +1,17 @@
+[
+  {
+    "filename": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+    "title": "System & Architecture",
+    "description": "Deep dive into Low-level concepts and OS."
+  },
+  {
+    "filename": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop",
+    "title": "AI & Automation",
+    "description": "Developing intelligent modules for automation."
+  },
+  {
+    "filename": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop",
+    "title": "Web Services",
+    "description": "Building user-friendly applications."
+  }
+]

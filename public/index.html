@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SSAFY Infotainment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<img class="dashboard-bg" src="./images/dashboard-modern.jpg" alt="dashboard background">
+
+<div class="tablet-frame">
+
+    <header class="top-bar">
+        <div class="brand-area">
+            <div class="logo">SSAFY</div>
+            <div id="userGreeting" class="user-greeting">안녕하세요! SSAFY님</div>
+        </div>
+
+        <div class="status">
+            <span id="clock">--:--</span>
+            <span class="sep">|</span>
+
+            <span id="weather" class="weather">
+                <span class="wx-icon">??/span>
+                <span class="wx-text">Weather??/span>
+            </span>
+
+            <span class="sep">|</span>
+            <span class="battery">100% ?뵅</span>
+        </div>
+    </header>
+
+    <main class="main-area">
+        <div class="content-area" id="contentArea">
+            <iframe id="contentFrame" title="Embedded infotainment content"></iframe>
+        </div>
+
+        <section class="profile-area">
+            <div class="profile-card">
+                <img id="mainProfileImage" src="./images/avatar-modern.jpg" alt="profile image">
+                <h3 id="mainProfileName">SSAFY</h3>
+                <p>Embedded Developer</p>
+                <small class="profile-subtext">Log-driven infotainment dashboard</small>
+            </div>
+        </section>
+
+        <section class="right-area">
+            <div class="map-area">
+                <div id="mainMap" class="kakao-map"></div>
+
+                <button
+                    class="map-overlay nav-btn"
+                    type="button"
+                    onclick="openPage('./navigation/navigation.html', 'Navigation')"
+                >
+                    Navigation
+                </button>
+            </div>
+
+            <div class="menu-area">
+                <div class="menu-card" onclick="openPage('./portfolio/portfolio.html', 'My Page')">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/person-fill.svg" alt="">
+                    <span>My Page</span>
+                </div>
+
+                <div class="menu-card" onclick="openPage('./settings/log-manager.html', 'Telematics Logs')">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/gear-fill.svg" alt="">
+                    <span>Setting</span>
+                </div>
+
+                <div class="menu-card" onclick="openPage('./user-switch/user-switch.html', 'Change User')">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/music-note-beamed.svg" alt="">
+                    <span>Change User</span>
+                </div>
+
+                <div class="menu-card" onclick="openPage('./vehicle/vehicle.html', 'Vehicle Profile')">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/car-front-fill.svg" alt="">
+                    <span>Vehicle</span>
+                </div>
+
+                <div class="menu-card" onclick="openPage('./weather/weather.html', 'Weather')">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/cloud-sun-fill.svg" alt="">
+                    <span>Weather</span>
+                </div>
+
+                <div
+                    class="menu-card"
+                    id="chatbotMenuCard"
+                    onclick="openPage('./chatbot/chatbot.html', 'AI Chatbot')"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16" style="margin-right: 20px; color: #00eaff;">
+                        <path d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    </svg>
+                    <div class="menu-label-group">
+                        <span>AI Chatbot</span>
+                        <small id="chatbotRestrictionText" class="menu-card-note"></small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bottom-bar">
+        <div class="footer-left">
+            <div class="home-btn" onclick="goHome()" title="Home">
+                <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/house-fill.svg" alt="home">
+            </div>
+        </div>
+
+        <div class="footer-center">
+            <span id="frameTitle">Home</span>
+        </div>
+
+        <div class="footer-right">
+            <span class="footer-hint">Press Setting to open log management</span>
+        </div>
+    </footer>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

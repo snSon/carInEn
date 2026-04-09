@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather</title>
+  <link rel="stylesheet" href="./weather.css" />
+</head>
+<body>
+
+  <div class="weather-shell">
+
+    <!-- 상단: 타이틀 + 위치 + 갱신시간 + 보기 전환(F218) -->
+    <div class="weather-top">
+      <div class="title">
+        <span class="dot"></span>
+        Weather
+      </div>
+
+      <div class="meta">
+        <span id="placeText" class="place">Locating…</span>
+        <span class="sep">|</span>
+        <span id="updatedText" class="updated">--:--</span>
+      </div>
+
+      <div class="controls">
+        <button id="btnHorizontal" class="ctrl-btn active" type="button">가로</button>
+        <button id="btnVertical" class="ctrl-btn" type="button">세로</button>
+        <button id="btnRefresh" class="ctrl-btn" type="button">새로고침</button>
+      </div>
+    </div>
+
+    <!-- 본문: 예보 카드(최소 5개 이상) -->
+    <div id="cards" class="cards horizontal" aria-live="polite"></div>
+
+  </div>
+
+  <script type="module" src="./weather.js"></script>
+</body>
+</html>

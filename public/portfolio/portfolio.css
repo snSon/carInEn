@@ -1,0 +1,90 @@
+/* 기본 설정 */
+html {
+    scroll-behavior: smooth; /* 부드러운 스크롤 */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    /* Navbar 높이만큼 상단 패딩 (컨텐츠가 가려지지 않게) */
+    padding-top: 56px; 
+    position: relative;
+}
+
+/* 섹션 공통 스타일 */
+section {
+    /* 네비게이션 클릭 시 헤더에 가려지지 않도록 오프셋 설정 */
+    scroll-margin-top: 70px; 
+    min-height: 80vh; /* 각 섹션 최소 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+/* 구분선 */
+.featurette-divider {
+    margin: 2rem 0;
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+}
+
+/* 네비게이션 활성화 상태 (Bootstrap ScrollSpy가 자동 적용) */
+.nav-link.active {
+    font-weight: bold;
+    color: #fff !important;
+    border-bottom: 2px solid #0d6efd;
+}
+
+/* Main Carousel */
+#mainCarousel img {
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.8); /* 텍스트 가독성을 위해 어둡게 */
+}
+
+/* --- 애니메이션 유틸리티 클래스 --- */
+/* 초기 상태: 투명하고 위치 이동 */
+.opacity-0 { opacity: 0 !important; }
+.translate-y-20 { transform: translateY(30px); }
+.translate-x-minus-20 { transform: translateX(-30px); }
+
+/* Progress Bar 트랜지션 */
+.progress-bar {
+    transition: width 1.5s ease-in-out;
+}
+
+/* Skill Card Hover */
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* --- Closing Section Effects --- */
+
+/* 1. 배경이 반짝이는 효과 (Flash) */
+@keyframes flash-bg {
+    0% { background-color: rgba(255, 255, 255, 0); }
+    30% { background-color: rgba(255, 193, 7, 0.3); } /* 노란색(Gold) 틴트 */
+    100% { background-color: rgba(255, 255, 255, 0); }
+}
+
+.flash-animation {
+    animation: flash-bg 1.5s ease-out;
+}
+
+/* 2. 카드가 뿅 하고 튀어 오르는 효과 (Pop Up) */
+@keyframes pop-up {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.05); opacity: 1; } /* 약간 커졌다가 */
+    100% { transform: scale(1); opacity: 1; } /* 제자리로 */
+}
+
+.pop-animation {
+    animation: pop-up 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* 쫀득한 느낌 */
+}

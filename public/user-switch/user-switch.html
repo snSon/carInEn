@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change User</title>
+    <link rel="stylesheet" href="user-switch.css">
+</head>
+<body>
+    <div class="switch-page">
+        <section class="switch-panel">
+            <div class="panel-head">
+                <div>
+                    <h1>프로필 선택</h1>
+                    <p class="panel-description">등록된 계정을 선택해 전환하거나 신규 프로필을 추가할 수 있습니다.</p>
+                </div>
+                <div class="head-actions">
+                    <button id="logoutBtn" class="secondary-btn" type="button">로그아웃</button>
+                    <button id="addProfileBtn" class="secondary-btn" type="button">신규 프로필 추가</button>
+                </div>
+            </div>
+
+            <div id="profileGrid" class="profile-grid"></div>
+            <div id="switchStatus" class="switch-status">프로필 목록을 불러오는 중입니다.</div>
+
+            <form id="loginForm" class="login-panel hidden">
+                <h2>프로필 로그인</h2>
+                <p id="selectedProfileText" class="selected-profile-text"></p>
+                <input id="loginEmail" type="email" placeholder="이메일" readonly>
+                <input id="loginPassword" type="password" placeholder="비밀번호">
+                <div class="login-actions">
+                    <button type="submit" class="primary-btn">로그인</button>
+                    <button id="cancelLoginBtn" type="button" class="secondary-btn">취소</button>
+                </div>
+            </form>
+
+            <form id="signupForm" class="signup-panel hidden">
+                <h2>신규 프로필 추가</h2>
+                <input id="signupName" type="text" placeholder="프로필 이름">
+                <input id="signupEmail" type="email" placeholder="이메일">
+                <p id="signupEmailStatus" class="email-status"></p>
+                <input id="signupPassword" type="password" placeholder="비밀번호">
+                <input id="signupPasswordConfirm" type="password" placeholder="비밀번호 확인">
+                <input id="signupProfileImage" type="file" accept="image/*">
+                <div class="login-actions">
+                    <button id="signupSubmitBtn" type="submit" class="primary-btn">프로필 생성</button>
+                    <button id="cancelSignupBtn" type="button" class="secondary-btn">취소</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script type="module" src="user-switch.js"></script>
+</body>
+</html>

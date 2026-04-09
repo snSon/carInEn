@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Settings</title>
+    <link rel="stylesheet" href="vehicle.css">
+</head>
+<body>
+    <div class="vehicle-page">
+        <aside id="adminSidebar" class="admin-sidebar hidden">
+            <h2>Admin Menu</h2>
+            <button class="sidebar-btn active" data-view="profile" type="button">내 프로필</button>
+            <button class="sidebar-btn" data-view="members" type="button">회원 권한 관리</button>
+        </aside>
+
+        <section class="vehicle-panel">
+            <div id="profileSection" class="vehicle-section">
+                <h1>Vehicle 설정</h1>
+                <p id="profileDescription" class="panel-description">내 프로필 정보를 수정합니다.</p>
+
+                <form id="profileForm" class="profile-form">
+                    <label for="displayName">닉네임</label>
+                    <input id="displayName" type="text" maxlength="30" placeholder="닉네임">
+
+                    <label for="newPassword">새 비밀번호</label>
+                    <input id="newPassword" type="password" placeholder="비밀번호 변경 시 입력">
+
+                    <label for="newPasswordConfirm">새 비밀번호 확인</label>
+                    <input id="newPasswordConfirm" type="password" placeholder="비밀번호 재입력">
+
+                    <label for="profileImage">프로필 이미지</label>
+                    <input id="profileImage" type="file" accept="image/*">
+                    <img id="profilePreview" class="image-preview hidden" alt="profile preview">
+
+                    <label for="backgroundImage">배경 이미지</label>
+                    <input id="backgroundImage" type="file" accept="image/*">
+                    <img id="backgroundPreview" class="background-preview hidden" alt="background preview">
+
+                    <button id="saveProfileBtn" type="submit" class="primary-btn">저장</button>
+                </form>
+            </div>
+
+            <div id="memberSection" class="vehicle-section hidden">
+                <h1>회원 권한 관리</h1>
+                <p class="panel-description">관리자만 회원 목록을 조회하고 권한을 변경할 수 있습니다.</p>
+                <div id="memberList" class="member-list"></div>
+            </div>
+
+            <div id="vehicleStatus" class="vehicle-status">정보를 불러오는 중입니다.</div>
+        </section>
+    </div>
+
+    <script type="module" src="vehicle.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SSAFY Navigation</title>
+
+  <link rel="stylesheet" href="./navigation.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <main class="nav-main">
+
+    <section class="left-panel">
+      <div class="panel-top">
+        <div class="panel-title">
+          <span class="dot"></span>
+          Navigation
+        </div>
+        <!-- ✅ Ready/Locating( statusText ) 완전 제거 -->
+      </div>
+
+      <div class="search-box">
+        <div class="search-row">
+          <div class="input-wrap">
+            <input id="searchInput" class="search-input" type="text"
+                   placeholder="목적지를 검색하세요 (예: 강남역, 코엑스)" autocomplete="off" />
+            <div id="autocomplete" class="ac-panel" hidden></div>
+          </div>
+
+          <button id="searchBtn" class="search-btn" type="button">검색</button>
+        </div>
+
+        <div class="hint">
+          • Enter로 검색 가능<br/>
+          • 검색 결과를 클릭하면 현재 위치 기준 경로가 지도에 표시됩니다.
+        </div>
+      </div>
+
+      <div class="results" id="results"></div>
+    </section>
+
+    <section class="map-panel">
+      <div id="map"></div>
+
+      <div class="map-top-overlay">
+        <!-- ✅ 현재 위치(위도/경도) chip 자체를 완전 제거 -->
+        <div class="map-chip">
+          <span>안내</span>
+          <strong id="routeText">대기중</strong>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="./navigation.js"></script>
+</body>
+</html>
