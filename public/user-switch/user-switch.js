@@ -6,6 +6,7 @@ import {
   quickAccessSsafy,
   signupProfile,
 } from "../auth/auth-service.js";
+import { assetUrls } from "../config/asset-urls.js";
 
 const profileGrid = document.getElementById("profileGrid");
 const switchStatus = document.getElementById("switchStatus");
@@ -132,13 +133,14 @@ function createProfileCard(profile) {
   button.type = "button";
   button.className = "profile-card";
 
-  const imageSrc = profile.photoURL || "../images/avatar-modern.jpg";
+  const hasCustomProfile = !!profile.photoURL;
+  const imageSrc = profile.photoURL || assetUrls.defaultProfile;
   const emailText = profile.email || "기본 계정";
   const modeText = profile.requiresLogin ? "로그인 필요" : "즉시 진입 가능";
   const roleText = `권한: ${profile.role}`;
 
   button.innerHTML = `
-    <img class="profile-avatar" src="${imageSrc}" alt="${profile.displayName}">
+    <img class="profile-avatar${hasCustomProfile ? "" : " default-avatar"}" src="${imageSrc}" alt="${profile.displayName}">
     <strong>${profile.displayName}</strong>
     <span>${emailText}</span>
     <span>${roleText}</span>

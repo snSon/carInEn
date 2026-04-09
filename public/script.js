@@ -2,12 +2,13 @@ import {
   quickAccessSsafy,
   watchSession,
 } from "./auth/auth-service.js";
+import { assetUrls } from "./config/asset-urls.js";
 import { appConfig } from "./config/app-config.js";
 import { loadKakaoSdk } from "./config/kakao-loader.js";
 
 const DEFAULT_USER_NAME = "SSAFY";
-const DEFAULT_PROFILE_IMAGE = "./images/avatar-modern.jpg";
-const DEFAULT_BACKGROUND_IMAGE = "./images/dashboard-modern.jpg";
+const DEFAULT_PROFILE_IMAGE = assetUrls.defaultProfile;
+const DEFAULT_BACKGROUND_IMAGE = assetUrls.dashboardBackground;
 const HOME_INIT_KEY = "pjt5-home-initialized";
 let currentSession = null;
 
@@ -26,7 +27,9 @@ function updateGreeting() {
   }
 
   if (profileImageEl) {
+    const hasCustomProfile = !!currentSession?.photoURL;
     profileImageEl.src = currentSession?.photoURL || DEFAULT_PROFILE_IMAGE;
+    profileImageEl.classList.toggle("default-avatar", !hasCustomProfile);
   }
 
   if (dashboardBgEl) {
