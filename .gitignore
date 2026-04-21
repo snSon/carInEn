@@ -8,3 +8,4 @@ functions/config/runtime-config.js
 *.local.js
 serviceAccount*.json
 firebase-adminsdk*.json
+AGENTS.md
