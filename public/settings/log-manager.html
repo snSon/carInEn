@@ -10,74 +10,71 @@
   <div class="log-shell">
     <header class="log-header">
       <div>
-        <h1>Telematics Logs</h1>
-        <p>Firestore onSnapshot 기반 실시간 로그 관리 화면</p>
+        <h1>Telematics Analytics</h1>
+        <p>Firestore onSnapshot based realtime driving dashboard</p>
       </div>
-      <div class="header-badge">Realtime</div>
+      <div id="realtimeBadge" class="header-badge">Realtime</div>
     </header>
 
     <main class="log-main">
       <aside class="filter-panel">
         <section class="panel-section">
-          <h2>원시 로그 업로드</h2>
+          <h2>Raw Log Upload</h2>
 
           <label class="upload-label" for="rawLogFile">
-            로그 파일 선택
+            Select log file
             <input id="rawLogFile" type="file" accept=".txt,.log" hidden />
           </label>
 
-          <div id="uploadStatus" class="query-status">업로드 대기 중</div>
+          <div id="uploadStatus" class="query-status">Waiting for upload.</div>
         </section>
 
         <section class="panel-section">
-          <h2>검색 조건</h2>
+          <h2>Filters</h2>
 
-          <label class="field-label" for="startDate">시작 날짜</label>
+          <label class="field-label" for="startDate">Start date</label>
           <input id="startDate" type="datetime-local" class="field-input" />
 
-          <label class="field-label" for="endDate">종료 날짜</label>
+          <label class="field-label" for="endDate">End date</label>
           <input id="endDate" type="datetime-local" class="field-input" />
 
-          <label class="field-label" for="logLevel">로그 레벨</label>
+          <label class="field-label" for="logLevel">Log level</label>
           <select id="logLevel" class="field-input">
             <option value="ALL">ALL</option>
             <option value="INFO">INFO</option>
-            <option value="WARNING">WARNING</option>
-            <option value="CRITICAL">CRITICAL</option>
+            <option value="WARN">WARN</option>
+            <option value="ERROR">ERROR</option>
           </select>
 
-          <label class="field-label" for="keyword">키워드</label>
+          <label class="field-label" for="userId">User ID</label>
+          <select id="userId" class="field-input">
+            <option value="">All users</option>
+          </select>
+
+          <label class="field-label" for="keyword">Keyword</label>
           <input
             id="keyword"
             type="text"
             class="field-input"
-            placeholder="message / event / impact 검색"
-          />
-
-          <label class="field-label" for="userId">사용자 ID</label>
-          <input
-            id="userId"
-            type="text"
-            class="field-input"
-            placeholder="예: user_ssafy"
+            placeholder="message / event / impact"
           />
 
           <div class="button-row">
-            <button id="applyFilterBtn" class="btn btn-primary" type="button">필터 적용</button>
-            <button id="resetFilterBtn" class="btn btn-secondary" type="button">초기화</button>
+            <button id="applyFilterBtn" class="btn btn-primary" type="button">Apply</button>
+            <button id="resetFilterBtn" class="btn btn-secondary" type="button">Reset</button>
           </div>
         </section>
 
         <section class="panel-section">
-          <h2>조회 상태</h2>
-          <div id="queryStatus" class="query-status">대기 중</div>
+          <h2>Query status</h2>
+          <div id="queryStatus" class="query-status">Loading.</div>
         </section>
 
         <section class="panel-section help-panel">
-          <h2>설명</h2>
+          <h2>Guide</h2>
           <p>
-            최신 로그가 상단에 표시됩니다. 날짜 범위, 레벨, 키워드, 사용자 ID를 조합해
-            원하는 데이터만 빠르게 조회할 수 있습니다.
+            Realtime updates arrive automatically through Firestore snapshot listeners.
+            The dashboard and data table are refreshed together whenever filters or source data change.
           </p>
         </section>
       </aside>
@@ -93,27 +90,82 @@
             <strong id="infoCount">0</strong>
           </article>
           <article class="summary-card warning-card">
-            <span class="summary-label">WARNING</span>
+            <span class="summary-label">WARN</span>
             <strong id="warningCount">0</strong>
           </article>
           <article class="summary-card error-card">
-            <span class="summary-label">CRITICAL</span>
+            <span class="summary-label">ERROR</span>
             <strong id="errorCount">0</strong>
+          </article>
+        </section>
+
+        <section class="chart-grid">
+          <article class="chart-card">
+            <div class="card-header">
+              <div>
+                <h2>Speed Trend</h2>
+                <p>Maximum speed and recent changes</p>
+              </div>
+            </div>
+            <canvas id="speedChart" aria-label="speed chart"></canvas>
+          </article>
+
+          <article class="chart-card">
+            <div class="card-header">
+              <div>
+                <h2>Engine Temperature</h2>
+                <p>Realtime heat monitoring</p>
+              </div>
+            </div>
+            <canvas id="engineTempChart" aria-label="engine temperature chart"></canvas>
+          </article>
+
+          <article class="chart-card">
+            <div class="card-header">
+              <div>
+                <h2>Acceleration</h2>
+                <p>Average and point-by-point acceleration</p>
+              </div>
+            </div>
+            <canvas id="accelChart" aria-label="acceleration chart"></canvas>
+          </article>
+        </section>
+
+        <section class="analysis-grid">
+          <article class="analysis-card alert-card">
+            <div class="card-header">
+              <div>
+                <h2>Anomaly Detection</h2>
+                <p>Threshold based risk scan</p>
+              </div>
+              <span id="alertCount" class="analysis-pill">0 alerts</span>
+            </div>
+            <div id="anomalyList" class="anomaly-list"></div>
+          </article>
+
+          <article class="analysis-card insight-card">
+            <div class="card-header">
+              <div>
+                <h2>Driving Insights</h2>
+                <p>Realtime metric summary</p>
+              </div>
+            </div>
+            <div id="insightGrid" class="insight-grid"></div>
           </article>
         </section>
 
         <section class="list-panel">
           <div class="list-header">
-            <h2>실시간 로그 목록</h2>
-            <span id="listMeta">0건</span>
+            <h2>Realtime Log Feed</h2>
+            <span id="listMeta">0 items</span>
           </div>
 
           <div id="emptyState" class="empty-state hidden">
-            조건에 맞는 로그가 없습니다.
+            No logs matched the selected conditions.
           </div>
 
           <div id="loadingState" class="loading-state">
-            Firestore 연결 중...
+            Connecting to Firestore.
           </div>
 
           <div id="logList" class="log-list"></div>
@@ -122,6 +174,7 @@
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <script type="module" src="./log-manager.js"></script>
 </body>
 </html>
